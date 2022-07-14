@@ -4,7 +4,6 @@ metadata:
   labels:
     k8s-app: golang-helloworld-monitor
   name: golang-helloworld-monitor
-  namespace: ns1
 spec:
   endpoints:
   - interval: 30s
