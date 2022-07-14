@@ -127,6 +127,8 @@ A dashboard is a group of graphs and queries that show us a piece of important i
 
 By default, OpenShift offers a set of them, but you can implement as much as you need. To navigate to the dashboard tab: ```Console > Observe > Dashboards```
 
+![OCP Metrics](images/ocp-dashboard.memory01.png)
+
 
 
 # References
