@@ -34,11 +34,18 @@ You only have to apply the ApplicationSet:
 applicationset.argoproj.io/kustomize-bootstrap created
 ```
 
+We need grant GitOps' user roles to create a ```ServiceMonitor```. 
+
+```zsh
+❯ oc policy add-role-to-user monitoring-edit system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller -n dev-monitoring
+clusterrole.rbac.authorization.k8s.io/monitoring-edit added: "system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller"
+```
+
 ## Test the application
 
 We are going to test our application. Firstly we will see the state in ArgoCD dashboard:
 
-// TODO: añadir imagen
+![OCP GitOps](images/ocp-gitops.png)
 
 Once we are sure that the application is running, we will execute an endpoint, for example the ```greetings`` endpoint:
 
@@ -75,23 +82,50 @@ By default, the OpenShift installation process installs and configures all the p
 
 The main components that we are going to explore are ```Grafana``` and ```Prometheus```
 
-// TODO: ver dónde poner esto
-```zsh
-❯ oc policy add-role-to-user monitoring-edit system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller -n dev-monitoring
-clusterrole.rbac.authorization.k8s.io/monitoring-edit added: "system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller"
-```
-
-## Prometheus
+## Metrics with Prometheus
 
 Prometheus has the responsibility to get the information about the metrics along the pods.
 
 By default, Prometheus calls the ```/metrics``` endpoint, finding for a specific format. Most language programming has the corresponding library to expose these metrics.
 
-At this point, we will find our application metrics in Prometheus. Our first step is to find the endpoint and enter the UI. 
+At the installation step, we grant privileges to the GitOps user.  The reason was that we need to create an ```ServiceMonitor``` object to indicate to Openshift that this service has to be monitored. The dinition of this object is:
 
-```zsh
-❯ oc get route -A | grep prometheus | awk '{print $3}'
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: golang-helloworld
+  name: golang-helloworld
+spec:
+  endpoints:
+  - interval: 30s
+    port: web
+    scheme: http
+  selector:
+    matchLabels:
+      app: golang-helloworld
 ```
+
+OpenShift integrates the full monitoring stack in its console. We will find our application metrics in ```Console > Observe > Metrics```. 
+
+We will test our application metrics system, by asking for the memory usage with the following query:
+
+```JQL
+go_memstats_alloc_bytes{namespace="dev-monitoring"}
+```
+
+The result:
+
+![OCP Metrics](images/ocp-metrics01.png)
+
+## Dashboards with Grafana
+
+As query monitoring parameter data one-to-one is not a trivial task, we need one way to visualize our data. 
+
+A dashboard is a group of graphs and queries that show us a piece of important information about our system. 
+
+By default, OpenShift offers a set of them, but you can implement as much as you need. To navigate to the dashboard tab: ```Console > Observe > Dashboards```
 
 
 
