@@ -129,6 +129,10 @@ By default, OpenShift offers a set of them, but you can implement as much as you
 
 ![OCP Metrics](images/ocp-dashboard.memory01.png)
 
+We can explore all the dashboards, for example, focusing on a terminated pod: 
+
+![OCP Metrics Pod](images/ocp-dashboard.memory02.png)
+
 # References
 - https://docs.openshift.com/container-platform/4.9/monitoring/monitoring-overview.html
 - https://github.com/dbgjerez/golang-k8s-helm-helloworld
