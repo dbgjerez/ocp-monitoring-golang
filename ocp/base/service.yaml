@@ -6,11 +6,9 @@ metadata:
   name: golang-helloworld
 spec:
   ports:
-  - name: 8080-tcp
+  - name: web
     port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    deployment: golang-helloworld
-status:
-  loadBalancer: {}
+    app: golang-helloworld
