@@ -88,7 +88,7 @@ Prometheus has the responsibility to get the information about the metrics along
 
 By default, Prometheus calls the ```/metrics``` endpoint, finding for a specific format. Most language programming has the corresponding library to expose these metrics.
 
-At the installation step, we grant privileges to the GitOps user.  The reason was that we need to create an ```ServiceMonitor``` object to indicate to Openshift that this service has to be monitored. The dinition of this object is:
+At the installation step, we grant privileges to the GitOps user.  The reason was that we need to create an ```ServiceMonitor``` object to indicate to Openshift that this service has to be monitored. The definition of this object is:
 
 ```yaml
 apiVersion: monitoring.coreos.com/v1
