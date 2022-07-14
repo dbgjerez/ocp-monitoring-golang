@@ -8,7 +8,7 @@ spec:
   endpoints:
   - interval: 30s
     port: web
-    scheme: http
+    scheme: https
   selector:
     matchLabels:
       app: golang-helloworld
