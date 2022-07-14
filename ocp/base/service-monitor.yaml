@@ -11,4 +11,4 @@ spec:
     scheme: http
   selector:
     matchLabels:
-      app: golang-helloworld
+      app.kubernetes.io/name: golang-helloworld

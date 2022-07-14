@@ -75,6 +75,12 @@ By default, the OpenShift installation process installs and configures all the p
 
 The main components that we are going to explore are ```Grafana``` and ```Prometheus```
 
+// TODO: ver dónde poner esto
+```zsh
+❯ oc policy add-role-to-user monitoring-edit system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller -n dev-monitoring
+clusterrole.rbac.authorization.k8s.io/monitoring-edit added: "system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller"
+```
+
 ## Prometheus
 
 Prometheus has the responsibility to get the information about the metrics along the pods.
