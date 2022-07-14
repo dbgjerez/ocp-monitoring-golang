@@ -11,4 +11,4 @@ spec:
     scheme: http
   selector:
     matchLabels:
-      golang-helloworld: golang-helloworld
+      app: golang-helloworld
