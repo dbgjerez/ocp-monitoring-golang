@@ -25,6 +25,8 @@ Go to the route and use your own credentials.
 
 ## Configure the application
 
+In the ocp folder, you can find the files needed to deploy the application. 
+
 
 # Install the application
 

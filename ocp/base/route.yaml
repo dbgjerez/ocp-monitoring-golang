@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: golang-helloworld
+  name: golang-helloworld
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: golang-helloworld
