@@ -2,8 +2,8 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    k8s-app: golang-helloworld-monitor
-  name: golang-helloworld-monitor
+    k8s-app: golang-helloworld
+  name: golang-helloworld
 spec:
   endpoints:
   - interval: 30s
