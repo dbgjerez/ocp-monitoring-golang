@@ -135,4 +135,5 @@ We can explore all the dashboards, for example, focusing on a terminated pod:
 
 # References
 - https://docs.openshift.com/container-platform/4.9/monitoring/monitoring-overview.html
+- https://blog.dbgjerez.es/2022/07/21/golang-application-metrics/
 - https://github.com/dbgjerez/golang-k8s-helm-helloworld
